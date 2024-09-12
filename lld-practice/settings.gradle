@@ -1,0 +1,4 @@
+rootProject.name = 'lld-practice'
+include 'splitwise'
+include 'bookmyshow'
+
