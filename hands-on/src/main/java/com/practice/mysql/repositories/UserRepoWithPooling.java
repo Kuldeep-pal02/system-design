@@ -2,20 +2,21 @@ package com.practice.mysql.repositories;
 
 import com.practice.mysql.entities.User;
 import com.practice.mysql.mapper.UserRowMapper;
-import com.practice.mysql.models.UserDto;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserRepository  {
+public class UserRepoWithPooling {
+
+    @Qualifier("myJdbcTemplateWithPooling")
     private final JdbcTemplate jdbcTemplate;
 
-    public UserRepository(JdbcTemplate jdbcTemplate) {
+    public UserRepoWithPooling(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public User save( User user ){
+    public User save(User user ){
         String sql = "INSERT INTO users (username, email) VALUES (?, ?)";
         jdbcTemplate.update(sql, user.getUsername(), user.getEmail());
         return user;
