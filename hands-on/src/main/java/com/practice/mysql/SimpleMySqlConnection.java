@@ -2,11 +2,13 @@ package com.practice.mysql;
 
 import java.sql.*;
 
+import static com.practice.mysql.models.DatabaseConstants.*;
+
 public class SimpleMySqlConnection {
     public static void main( String[] args){
-        String jdbcUrl = "jdbc:mysql://localhost:3306/system_design";
-        String username = "root";
-        String password = System.getenv("MYSQL_PASSWORD");
+        String jdbcUrl = JDBC_URL;
+        String username = USERNAME ;
+        String password = System.getenv( MYSQL_PASSWORD );
         try{
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
             System.out.println("Connected to the database successfully!");

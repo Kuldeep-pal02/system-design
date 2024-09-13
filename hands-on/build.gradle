@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '3.0.0'
+    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
 }
 
 group 'org.example'
@@ -14,6 +16,21 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
     implementation 'mysql:mysql-connector-java:8.0.33'
+    implementation 'org.springframework:spring-jdbc:5.3.10'
+
+    // Spring Boot Starter for Web Applications
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    // Spring Boot Starter for JDBC (if using JdbcTemplate)
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+
+    // HikariCP connection pool
+    implementation 'com.zaxxer:HikariCP'
+
+    compileOnly 'org.projectlombok:lombok:1.18.24'  // Adjust version if necessary
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+
 }
 
 test {
