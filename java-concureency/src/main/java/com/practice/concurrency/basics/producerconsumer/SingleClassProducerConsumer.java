@@ -5,13 +5,15 @@ import java.util.Random;
 
 public class SingleClassProducerConsumer {
 
-    private static SharedBuffer sharedBuffer;
+    //private static SharedBuffer sharedBuffer;
 
+    private static BufferForProducerConsumer sharedBuffer;
 
 
     public static void main(String[] args) {
 
         sharedBuffer = new SharedBuffer( new LinkedList<>(), 2);
+        sharedBuffer = new SharedBufferWithBlockingQueue( 2);
         Random random = new Random();
         Runnable producer = new Runnable() {
             int value = 0;

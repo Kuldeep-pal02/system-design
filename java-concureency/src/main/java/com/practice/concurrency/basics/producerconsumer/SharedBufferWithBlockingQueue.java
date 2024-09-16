@@ -1,41 +1,35 @@
 package com.practice.concurrency.basics.producerconsumer;
 
-import lombok.Data;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
-import java.util.Queue;
-
-@Data
-public class SharedBuffer implements  BufferForProducerConsumer {
-    private final Queue<Integer> sharedQueue;
+public class SharedBufferWithBlockingQueue implements BufferForProducerConsumer{
     private final int capacity;
-
-    public SharedBuffer( Queue<Integer> sharedQueue, int capacity){
-        this.sharedQueue = sharedQueue;
+    private BlockingQueue<Integer> blockingDeque;
+    public SharedBufferWithBlockingQueue( int capacity){
         this.capacity = capacity;
+        this.blockingDeque = new ArrayBlockingQueue<>(capacity);
     }
 
     @Override
     public synchronized void produce( int number) throws InterruptedException {
-        while ( sharedQueue.size() == capacity ){
+        while ( blockingDeque.size() == capacity ){
             wait();
             System.out.println(" Waiting : to produce since queue is full" + Thread.currentThread().getName());
         }
 
-        sharedQueue.add( number );
-        if( sharedQueue.size() > capacity  ){
-            System.out.println( "Queue exploeded.");
-        }
+        blockingDeque.add( number );
         System.out.println( "Produced NUmber : "+ number +":::" + Thread.currentThread().getName());
         notify();
     }
 
     @Override
     public synchronized  void consume() throws InterruptedException {
-        while( sharedQueue.isEmpty() ){
+        while( blockingDeque.isEmpty() ){
             wait();
             System.out.println(" Waiting : to consume since queue is empty"+ Thread.currentThread().getName());
         }
-        int number = sharedQueue.poll();
+        int number = blockingDeque.poll();
         notify();
         System.out.println( "Consumed NUmber : "+ number +":::" + Thread.currentThread().getName());
     }
