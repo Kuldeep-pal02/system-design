@@ -1,12 +1,16 @@
-package com.practice.concurrency.basics;
+package com.practice.concurrency.basics.seperateclasses;
 
-public class EvenOddDriver {
+public class PrintSeparateClassEvenOddDriver {
     public static void main(String[] args) {
-        PrintEvenOdd printEvenOdd = new PrintEvenOdd( true );
+        PrintCordinator coordinator = new PrintCordinator( true );
         int n = 100;
+
+        PrintEven printEven = new PrintEven(coordinator);
+        PrintOdd printOdd = new PrintOdd(coordinator);
+
         Thread threadEven = new Thread(() -> {
             try {
-                printEvenOdd.printEven( n );
+                printEven.printEven(n);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -14,7 +18,7 @@ public class EvenOddDriver {
 
         Thread threadOdd = new Thread(() -> {
             try {
-                printEvenOdd.printOdd( n );
+                printOdd.printOdd(n);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -23,5 +27,4 @@ public class EvenOddDriver {
         threadEven.start();
         threadOdd.start();
     }
-
 }

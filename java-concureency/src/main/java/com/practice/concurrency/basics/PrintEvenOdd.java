@@ -2,8 +2,12 @@ package com.practice.concurrency.basics;
 
 public class PrintEvenOdd {
     boolean evenTurn = false;
-    synchronized public void printEven(int n) throws InterruptedException {
-        for( int even = 2 ; even <=n; even += 2 ){
+
+    public PrintEvenOdd( boolean evenTurn ){
+        this.evenTurn = evenTurn;
+    }
+     synchronized  public void printEven(int n) throws InterruptedException {
+        for( int even = 0 ; even <=n; even += 2 ){
 
             while( !evenTurn ){
                 wait();
