@@ -22,7 +22,8 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
-/.idea/
+**/.idea/**
+**/.gradle/**
 /hands-on/.gradle/buildOutputCleanup/buildOutputCleanup.lock
 /java-concureency/.gradle/buildOutputCleanup/buildOutputCleanup.lock
 /hands-on/.gradle/buildOutputCleanup/cache.properties
@@ -59,4 +60,8 @@ replay_pid*
 /hands-on/.gradle/7.4/fileHashes/resourceHashesCache.bin
 /java-concureency/.gradle/7.4/fileHashes/resourceHashesCache.bin
 /hands-on/.gradle/7.4/checksums/sha1-checksums.bin
-/lld-practice/.gradle/7.4/checksums/sha1-checksums.bin
+/lld-practice/.gradle/**
+/java-concureency/.gradle/**
+/hands-on/build/**
+**/lucene-index/**
+
