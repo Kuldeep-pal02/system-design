@@ -1,7 +1,6 @@
 package com.lld.splitwise.usermanagement.services;
 
-import com.lld.splitwise.usermanagement.models.UserDto;
-
+import com.lld.splitwise.usermanagement.models.User;
 public interface IUserRegistration {
-    void registerUser( UserDto user );
+    void registerUser( User user );
 }

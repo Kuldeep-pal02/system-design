@@ -16,7 +16,7 @@ public class InMemoryUserRegistration implements IUserRegistration{
     }
 
     @Override
-    public void registerUser(UserDto user) {
+    public void registerUser(User user) {
         loggedInUsers.put(user.getUserId(),  user);
     }
 }
