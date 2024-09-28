@@ -4,6 +4,7 @@ import com.lld.splitwise.groupmanagement.model.SplitwiseGroup;
 import com.lld.splitwise.usermanagement.models.User;
 
 import javax.swing.*;
+import java.util.List;
 
 public class Expense {
 
@@ -14,8 +15,10 @@ public class Expense {
     private SplitwiseGroup group;
     private SplitStrategy splitStrategy;
 
+    private List<ExpenseShare> expenseShareList;
+
     public void calculateShares(){
-        this.splitStrategy.calculateShare( amount, group.getMembers() );
+        expenseShareList.addAll( this.splitStrategy.calculateShare( amount, group.getMembers() ) );
     }
 
 }
